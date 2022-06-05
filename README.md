@@ -7,7 +7,7 @@ very simple python chatbot to suck less at nlp
 
 First create venv and install dependencies
 ```
-$ virtualenv venv
+$ virtualenv --python=<path to python3.7> venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```

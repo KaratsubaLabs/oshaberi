@@ -1,5 +1,8 @@
 
-class IntentDataset:
+from torch.utils.data import Dataset
+
+
+class IntentDataset(Dataset):
 
     def __init__(self, x, y):
         self.x_data = x
@@ -8,5 +11,5 @@ class IntentDataset:
     def __len__(self):
         return len(self.x_data)
 
-    def __get_item__(self, index):
+    def __getitem__(self, index):
         return self.x_data[index], self.y_data[index]
