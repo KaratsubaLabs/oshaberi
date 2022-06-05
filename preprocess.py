@@ -1,4 +1,5 @@
 
+import numpy as np
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -19,5 +20,11 @@ def stem(tokenized):
     return [stemmer.stem(token) for token in tokenized]
 
 
-def bag_words():
-    raise NotImplementedError
+def bag_words(tokenized, word_dict):
+    bag = np.zeros(len(word_dict), dtype=np.float32)
+    for i, token in enumerate(tokenized):
+        if token in word_dict:
+            bag[i] = 1.0
+
+    return bag
+
