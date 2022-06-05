@@ -3,9 +3,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-
-# TODO this is prob not needed lol
 from pipeop import pipes
+
 import preprocess
 from dataset import IntentDataset
 from nn import NeuralNet
@@ -63,7 +62,7 @@ def train():
     input_size = len(word_dict)
     hidden_size = 8
     output_size = len(tags)
-    device = 'cpu'
+    device = "cpu"
     model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
     # start training
@@ -87,11 +86,23 @@ def train():
             optimizer.step()
 
         if epoch % 100 == 0:
-            print(f'epoch={epoch}/{training_epochs} loss={loss.item():.4f}')
+            print(f"epoch={epoch}/{training_epochs} loss={loss.item():.4f}")
 
-    print(f'final loss={loss.item():.4f}')
+    print(f"final loss={loss.item():.4f}")
+
+    # save training data to file
+    model_filepath = "./out/intents.pth"
+    model_data = {
+        "model_state": model.state_dict(),
+        "input_size": input_size,
+        "hidden_size": hidden_size,
+        "output_size": output_size,
+        "word_dict": word_dict,
+        "tags": tags
+    }
+    torch.save(model_data, model_filepath)
+    print("successfully saved model data to file")
 
 
 if __name__ == "__main__":
     train()
-
