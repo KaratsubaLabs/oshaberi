@@ -1,0 +1,17 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "utternaces": [
+        "hello",
+        "hi",
+        "greetings",
+        "what's up",
+        "good to see you",
+        "howdy"
+      ],
+      "responses": [
+      ]
+    }
+  ]
+}
