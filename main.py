@@ -1,5 +1,6 @@
 import sys
 import torch
+from pipeop import pipes
 
 from nn import NeuralNet
 import preprocess
@@ -25,16 +26,31 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-# preprocess query
-x = preprocess.tokenize(query)
-x = preprocess.stem(x)
-x = preprocess.bag_words(x, word_dict)
-x = x.reshape(1, x.shape[0])
-x = torch.from_numpy(x)
+@pipes
+def preprocess_query(query):
+    x = (query
+        >> preprocess.tokenize
+        >> preprocess.stem
+        >> preprocess.bag_words(word_dict)
+    )
+    x = x.reshape(1, x.shape[0])
+    return torch.from_numpy(x)
 
-output = model(x)
+
+preprocessed = preprocess_query(query)
+# TODO catch a tensor that is all zero
+print(preprocessed)
+output = model(preprocessed)
 _, predicted = torch.max(output, dim=1)
 tag = tags[predicted.item()]
 
-print(tag)
+probs = torch.softmax(output, dim=1)
+prob = probs[0][predicted.item()]
+
+confidence_threshold = 0.75
+if prob.item() > confidence_threshold:
+    print(f"[prob={prob.item():.4f}] {tag}")
+else:
+    print("query not understood")
+
 

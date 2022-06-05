@@ -5,7 +5,12 @@
       "utterances": [
           "what is the weather currently",
           "how's the weather",
-          "what's it like outside"
+          "what's it like outside",
+          "weather",
+          "can you tell me the weather",
+          "weather report",
+          "current weather",
+          "what's the weather like"
       ],
       "responses": [
       ]
@@ -15,7 +20,9 @@
       "utterances": [
           "what time is it",
           "tell me the time",
-          "what's the time"
+          "what's the time",
+          "current time",
+          "time"
       ],
       "responses": [
       ]

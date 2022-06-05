@@ -19,11 +19,13 @@ $ python bin/download.py
 
 ## TODO
 
-- [ ] properly load intents data from json
+- [x] properly load intents data from json
 - [ ] add type annotations
 - [ ] do some benchmarking (maybe)
-- [ ] implement simple user interaction
+- [x] implement simple user interaction
 - [ ] python linter
+- [ ] support regex in intents to generate more testing data
+- [ ] support queries inside utterances
 
 ## RESOURCES
 
