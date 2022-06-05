@@ -1,17 +1,25 @@
 {
   "intents": [
     {
-      "tag": "greeting",
-      "utternaces": [
-        "hello",
-        "hi",
-        "greetings",
-        "what's up",
-        "good to see you",
-        "howdy"
+      "tag": "weather",
+      "utterances": [
+          "what is the weather currently",
+          "how's the weather",
+          "what's it like outside"
       ],
       "responses": [
       ]
+    },
+    {
+      "tag": "datetime",
+      "utterances": [
+          "what time is it",
+          "tell me the time",
+          "what's the time"
+      ],
+      "responses": [
+      ]
+
     }
   ]
 }

@@ -17,6 +17,14 @@ Next, download required nltk data
 $ python bin/download.py
 ```
 
+## TODO
+
+- [ ] properly load intents data from json
+- [ ] add type annotations
+- [ ] do some benchmarking (maybe)
+- [ ] implement simple user interaction
+- [ ] python linter
+
 ## RESOURCES
 
 using these resources
