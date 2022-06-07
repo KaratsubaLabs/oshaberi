@@ -9,13 +9,13 @@ import preprocess
 from dataset import IntentDataset
 from nn import NeuralNet
 from reader import import_intents, get_tags
+import config
 
 
 @pipes
-def train():
-
+def train(batch_size=8, num_workers=2, hidden_size=8, learning_rate=0.001, training_epochs=1000):
     # load data
-    intents = import_intents("./data/intents.json")
+    intents = import_intents(config.INTENTS_FILEPATH)
     tags = get_tags(intents)
 
     word_dict = []
@@ -49,8 +49,6 @@ def train():
     dataset = IntentDataset(x_data, y_data)
 
     # build dataloader
-    batch_size = 8
-    num_workers = 2
     loader = DataLoader(
         dataset=dataset,
         batch_size=batch_size,
@@ -60,21 +58,18 @@ def train():
 
     # build neural net
     input_size = len(word_dict)
-    hidden_size = 8
+
     output_size = len(tags)
-    device = "cpu"
-    model = NeuralNet(input_size, hidden_size, output_size).to(device)
+    model = NeuralNet(input_size, hidden_size, output_size).to(config.MODEL_DEVICE)
 
     # start training
-    learning_rate = 0.001
-    training_epochs = 1000
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     for epoch in range(training_epochs):
         for (words, labels) in loader:
-            words = words.to(device)
-            labels = labels.to(device)
+            words = words.to(config.MODEL_DEVICE)
+            labels = labels.to(config.MODEL_DEVICE)
 
             # forward pass
             outputs = model(words)
@@ -91,7 +86,6 @@ def train():
     print(f"final loss={loss.item():.4f}")
 
     # save training data to file
-    model_filepath = "./out/intents.pth"
     model_data = {
         "model_state": model.state_dict(),
         "input_size": input_size,
@@ -100,7 +94,7 @@ def train():
         "word_dict": word_dict,
         "tags": tags
     }
-    torch.save(model_data, model_filepath)
+    torch.save(model_data, config.MODEL_FILEPATH)
     print("successfully saved model data to file")
 
 

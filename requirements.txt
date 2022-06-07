@@ -1,9 +1,16 @@
+certifi==2022.5.18.1
+charset-normalizer==2.0.12
 click==8.1.3
+idna==3.3
+importlib-metadata==4.11.4
 joblib==1.1.0
 nltk==3.7
-numpy==1.22.4
+numpy==1.21.6
 pipeop==0.3.0
 regex==2022.6.2
+requests==2.27.1
 torch==1.11.0
 tqdm==4.64.0
 typing_extensions==4.2.0
+urllib3==1.26.9
+zipp==3.8.0

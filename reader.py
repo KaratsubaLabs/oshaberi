@@ -2,6 +2,8 @@
 import json
 from pipeop import pipes
 
+import config
+
 
 def import_intents(filepath):
     with open(filepath, "r") as filehandle:
