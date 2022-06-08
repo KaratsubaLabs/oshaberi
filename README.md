@@ -17,6 +17,11 @@ Next, download required nltk data
 $ python bin/download.py
 ```
 
+Start the `vosk` server for speech recognition
+```
+$ docker run -d -p 2700:2700 alphacep/kaldi-en:latest-en:latest
+```
+
 ## TODO
 
 - [x] properly load intents data from json
