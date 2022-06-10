@@ -8,7 +8,10 @@ MODEL_DEVICE = "cpu"
 CONFIDENCE_THRESHOLD = 0.75  # threshold where intent is accepted
 
 # api
-API_URL = "http://localhost:8000"
+ONIGIRI_URL = "http://localhost:8000"
 
-# voice stream
+# vosk speech recognition
 VOSK_URL = "ws://localhost:2700"
+
+# openTTS voice synthesiser
+OPENTTS_URL = "http://localhost:5500/api"
