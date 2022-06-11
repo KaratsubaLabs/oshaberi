@@ -1,5 +1,6 @@
 asyncio==3.4.3
 certifi==2022.5.18.1
+cffi==1.15.0
 charset-normalizer==2.0.12
 click==8.1.3
 idna==3.3
@@ -8,8 +9,10 @@ joblib==1.1.0
 nltk==3.7
 numpy==1.21.6
 pipeop==0.3.0
+pycparser==2.21
 regex==2022.6.2
 requests==2.27.1
+sounddevice==0.4.4
 torch==1.11.0
 tqdm==4.64.0
 typing_extensions==4.2.0

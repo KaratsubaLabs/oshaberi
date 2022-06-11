@@ -39,6 +39,11 @@ async def run(uri):
             await sock.send('{"eof": 1}')
             await sock.recv()
 
+async def test():
+    async with websockets.connect(config.VOSK_URL) as sock:
+        pass
+
 if __name__ == "__main__":
-    asyncio.run(run(config.VOSK_URL))
+    asyncio.run(test())
+    # asyncio.run(run(config.VOSK_URL))
 
