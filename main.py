@@ -3,6 +3,8 @@ import torch
 from pipeop import pipes
 
 from nn import NeuralNet
+import nltk
+
 import preprocess
 import config
 
@@ -36,6 +38,16 @@ def preprocess_query(query):
     return torch.from_numpy(x)
 
 
+@pipes
+def analyze_query(query):
+    tagged = (query
+        >> preprocess.tokenize
+        >> nltk.pos_tag
+    )
+    print(tagged)
+    chunked = nltk.ne_chunk(tagged)
+    print(chunked)
+
 preprocessed = preprocess_query(query)
 # TODO catch a tensor that is all zero
 print(preprocessed)
@@ -48,6 +60,7 @@ prob = probs[0][predicted.item()]
 
 if prob.item() > config.CONFIDENCE_THRESHOLD:
     print(f"[prob={prob.item():.4f}] {tag}")
+    analyze_query(query)
 else:
     print("query not understood")
 

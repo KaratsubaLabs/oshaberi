@@ -4,7 +4,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
-STOP_WORDS = set(stopwords.words("english"))
+STOP_WORDS = set(stopwords.words("english")).union(['{}'])
 stemmer = PorterStemmer()
 
 
